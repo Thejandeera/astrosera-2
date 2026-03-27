@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 
-const backendUrl = process.env.VITE_API_URL;
+const backendUrl = import.meta.env.VITE_API_URL;
 
 const API_BASE = backendUrl;
 
@@ -40,7 +40,7 @@ const VerifyEmail = () => {
         setIsSubmitting(true);
 
         try {
-            const response = await fetch(`${backendurl}/api/auth/verify-otp`, {
+            const response = await fetch(`${backendurl}/auth/verify-otp`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, otp_code: otpCode }),
@@ -92,7 +92,7 @@ const VerifyEmail = () => {
         setSuccess('');
 
         try {
-            const response = await fetch(`${backendurl}/api/auth/resend-otp`, {
+            const response = await fetch(`${backendurl}/auth/resend-otp`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email }),
