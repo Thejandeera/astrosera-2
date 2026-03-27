@@ -19,6 +19,7 @@ import Member3 from './Pages/Member03/member3'
 import VerifyEmail from './Pages/VerifyEmail'
 import ProtectedRoute from './component/ProtectedRoute'
 
+
 // Auth Gaters
 const TimeGater = ({ delay, message, children }) => {
   const [showModal, setShowModal] = useState(false);
@@ -51,23 +52,23 @@ const ChatGater = ({ children }) => {
 
     let isSubmit = false;
     if (e.type === 'keydown' && e.key === 'Enter' && !e.shiftKey) {
-       isSubmit = true;
+      isSubmit = true;
     }
     if (e.type === 'click') {
-       const btn = e.target.closest('button');
-       if (btn && btn.textContent.includes('Send')) {
-          isSubmit = true;
-       }
+      const btn = e.target.closest('button');
+      if (btn && btn.textContent.includes('Send')) {
+        isSubmit = true;
+      }
     }
 
     if (isSubmit) {
-       if (msgCountRef.current >= 2) {
-          e.stopPropagation();
-          e.preventDefault();
-          setShowModal(true);
-       } else {
-          msgCountRef.current += 1;
-       }
+      if (msgCountRef.current >= 2) {
+        e.stopPropagation();
+        e.preventDefault();
+        setShowModal(true);
+      } else {
+        msgCountRef.current += 1;
+      }
     }
   };
 
@@ -87,12 +88,12 @@ const QuizGater = ({ children }) => {
     if (userId) return;
 
     if (e.type === 'click') {
-       const btn = e.target.closest('button');
-       if (btn && btn.textContent.includes('Launch Mission')) {
-           e.stopPropagation();
-           e.preventDefault();
-           setShowModal(true);
-       }
+      const btn = e.target.closest('button');
+      if (btn && btn.textContent.includes('Launch Mission')) {
+        e.stopPropagation();
+        e.preventDefault();
+        setShowModal(true);
+      }
     }
   };
 
@@ -106,14 +107,14 @@ const QuizGater = ({ children }) => {
 
 const App = () => {
   const location = useLocation();
-  
+
   // Keep your friend's logic: Hide footer on the Chat page
   const hideFooter = location.pathname === '/chat';
 
   return (
     <>
       <Navbar />
-      
+
       {/* Keep the Animation wrapper from Main */}
       <AnimatePresence mode="wait" initial={false}>
         <Routes location={location} key={location.pathname}>
